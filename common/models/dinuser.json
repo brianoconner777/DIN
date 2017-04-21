@@ -1,0 +1,52 @@
+{
+  "name": "dinuser",
+  "base": "User",
+  "idInjection": false,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "email": {
+      "type": "string",
+      "id":true
+    },
+    "contact": {
+      "type": "string"
+    },
+    "gender": {
+      "type": "string"
+    },
+    "token": {
+      "type": "string"
+    },
+    "location": {
+      "type": "string"
+    },
+    "passes": {
+      "type": "string"
+    },
+    "money": {
+      "type": "string"
+    },
+    "referralcode": {
+      "type": "string"
+    },
+    "bookingdetails": {
+      "type": [
+        "object"
+      ]
+    },
+    "preferences": {
+      "type": [
+        "string"
+      ]
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}
