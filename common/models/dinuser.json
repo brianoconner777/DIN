@@ -11,7 +11,7 @@
     },
     "email": {
       "type": "string",
-      "id":true
+      "id": true
     },
     "contact": {
       "type": "string"

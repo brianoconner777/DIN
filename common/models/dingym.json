@@ -24,8 +24,8 @@
     "image": {
       "type": "string"
     },
-    "category":{
-      "type": "string" 
+    "category": {
+      "type": "string"
     }
   },
   "validations": [],
