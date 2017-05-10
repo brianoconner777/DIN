@@ -107,7 +107,7 @@
 });
 
 	$("#demo01").animatedModal();
-	
+	var session_slots = [];
 	$('.submitslot').click(function(){
 			
 			var slot_name = $('#slot_name').val();
@@ -122,7 +122,7 @@
 				"slot_end_time":slot_endtime,
 				"slot_rate":slot_rate
 			};
-			var session_slots = [];
+			
 			session_slots.push(slotjson);
 			
 			
