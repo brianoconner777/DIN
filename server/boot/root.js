@@ -4,5 +4,9 @@ module.exports = function(server) {
   router.get('/', function(req, res) {
     res.render('index');
 });
+
+  router.get('/session', function(req, res) {
+    res.render('session');
+});
   server.use(router);
 };

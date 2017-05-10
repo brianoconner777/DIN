@@ -26,6 +26,11 @@
     },
     "category": {
       "type": "string"
+    },
+    "daily_sessions": {
+      "type": [
+        "object"
+      ]
     }
   },
   "validations": [],
