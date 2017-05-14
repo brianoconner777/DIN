@@ -56,6 +56,8 @@
 					        <div class="close-animatedModal"> 
 					            Close
 					        </div>
+
+					        <div class="slot_feedback" style="position:fixed; top:0; right:0; max-width:150px;"></div>
 					            
 					        <div class="modal-content">
 					                 <label for="phone">Slot Name</label>
@@ -69,7 +71,8 @@
 	  								 <label for="phone">Slot Rate</label>
 	  								 <input type="text" id="slot_rate" name="phone" placeholder="+351 999 999">
 
-	  								 <button class="submitslot">Submit Slot</button>
+	  								 <!-- <button class="submitslot">Submit Slot</button> -->
+	  								 <input type="button" class="submitslot" value="Submit Slot"/>
 					        </div>
 					  </div>
 	  				<div class="cbp-mc-submit-wrap"><input class="cbp-mc-submit" value="Upload" /></div>
@@ -84,6 +87,17 @@
 	
 	
 	$(document).ready(function(){
+
+	function makeid()
+	{
+	    var text = "";
+	    var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+	    for( var i=0; i < 16; i++ )
+	        text += possible.charAt(Math.floor(Math.random() * possible.length));
+
+	    return text;
+	}
 
 	$('#timepicker1').timepicker({
     timeFormat: 'h:mm p',
@@ -108,14 +122,16 @@
 
 	$("#demo01").animatedModal();
 	var session_slots = [];
+
 	$('.submitslot').click(function(){
-			
+			var slot_id = makeid();
 			var slot_name = $('#slot_name').val();
 			var slot_duration = $('#slot_duration').val();
 			var slot_starttime = $('#timepicker1').val();
-			var slot_endtime = $('#slot_endtime').val();
+			var slot_endtime = $('#timepicker2').val();
 			var slot_rate = $('#slot_rate').val();
 			var slotjson = {
+				"slot_id" : slot_id,
 				"slot_name":slot_name,
 				"slot_duration":slot_duration,
 				"slot_start_time":slot_starttime,
@@ -124,8 +140,11 @@
 			};
 			
 			session_slots.push(slotjson);
-			
-			
+			slot_added = '<div class="slot_hide" style="position:relative; background-color:grey; cursor:pointer; margin:10px; padding:20px; color:white; ">Slot Added</div>';
+			$('.slot_feedback').append(slot_added);
+			$('div.slot_hide').on("click",function(){
+				$(this).fadeOut(500);
+			});
 			
 	}	
 );
@@ -140,6 +159,7 @@
     var session_duration = $('#session_duration').val();
     
     var json = {
+    	"session_id": makeid(),
     	"session_name":session_name,
     	"session_currentrate":session_currentrate,
     	"session_description":session_description,
@@ -150,17 +170,26 @@
     	"id":id,
     	"session_slots":session_slots,
     };
-    var arrayjson = [];
-    arrayjson.push(json);
-    var mainjson = {
-    "daily_sessions":arrayjson
-    };
+
     $.ajax({
-    	type:"PUT",
+    	type:"GET",
     	url:"http://128.199.190.92/api/dingyms/"+id,
-    	data:mainjson,
     	success: function(data){
-    		console.log(data);
+    		if(!data.daily_sessions) {
+    			data.daily_sessions = [];	
+    		}
+    		
+    		data.daily_sessions.push(json);
+    		var mainjson = data;
+    		$.ajax({
+		    	type:"PUT",
+		    	url:"http://128.199.190.92/api/dingyms/"+id,
+		    	data:mainjson,
+		    	success: function(data){
+		    		console.log(data);
+		    		session_slots = [];
+		    	}
+		    });
     	}
     });
 });
