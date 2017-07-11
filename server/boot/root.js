@@ -5,8 +5,6 @@ module.exports = function(server) {
     res.render('index');
 });
 
-  router.get('/session', function(req, res) {
-    res.render('session');
-});
+  
   server.use(router);
 };
