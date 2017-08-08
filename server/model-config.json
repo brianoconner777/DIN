@@ -47,5 +47,11 @@
   "container": {
     "dataSource": "container",
     "public": true
+  },
+  "dincategory": {
+    "dataSource": "mongodb",
+    "public": true,
+    "$promise": {},
+    "$resolved": true
   }
 }

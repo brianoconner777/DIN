@@ -1,0 +1,26 @@
+{
+  "name": "dincategory",
+  "base": "PersistedModel",
+  "strict": false,
+  "idInjection": false,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "CategoryName": {
+      "type": "string"
+    },
+    "CategoryImage": {
+      "type": "string"
+    },
+    "CategoryId": {
+      "type": "string",
+      "id": true,
+      "required": true
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}
