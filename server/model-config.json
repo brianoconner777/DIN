@@ -44,14 +44,14 @@
     "$promise": {},
     "$resolved": true
   },
-  "container": {
-    "dataSource": "container",
-    "public": true
-  },
   "dincategory": {
     "dataSource": "mongodb",
     "public": true,
     "$promise": {},
     "$resolved": true
+  },
+  "Container": {
+    "dataSource": "container",
+    "public": true
   }
 }

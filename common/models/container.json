@@ -1,10 +1,6 @@
 {
-  "name": "container",
-  "base": "PersistedModel",
-  "idInjection": true,
-  "options": {
-    "validateUpsert": true
-  },
+  "name": "Container",
+  "base": "Model",
   "properties": {},
   "validations": [],
   "relations": {},
